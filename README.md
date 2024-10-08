@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/83961f39-8725-405c-86f4-c3c7f56eb381)![image](https://github.com/user-attachments/assets/3b8edf12-8953-43f4-945f-e9ffe3cfa01e)![image](https://github.com/user-attachments/assets/25c5e526-26b6-499c-827d-fe4637a08fb2)![image](https://github.com/user-attachments/assets/355ef5b0-1387-4316-8482-8aa87b1527d5)﻿# Django-Blog
+﻿# Django-Blog
 # Django-Blog
 Features:
 
