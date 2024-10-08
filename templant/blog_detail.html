@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .blog-image {
+        margin: 0 auto; 
+        display: block; 
+        border-radius: 10px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .blog-content {
+        text-align: justify; 
+        line-height: 1.8;
+        font-size: 1.1rem;
+    }
+
+    .button-wrapper {
+        display: flex;
+        justify-content: center; /* Centers horizontally */
+        margin-top: 30px; 
+        margin-bottom: 30px;
+    }
+
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 3px solid #dee2e6;
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .card-body {
+        padding: 2.5rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #fff;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        text-align: center; 
+        display: flex;
+        align-items: center; 
+        justify-content: center; 
+    }
+
+    .btn-primary i {
+        margin-right: 8px; 
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
+
+    .card-img-top {
+        height: 400px;
+        object-fit: cover;
+        border-bottom: 3px solid #dee2e6;
+    }
+
+    .card-title {
+        font-size: 2rem;
+        color: #333;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <h5 class="card-header text-center">Blog Detail</h5>
+                <div class="card-body">
+                    <div class="col-xl-10 mx-auto">
+                        <img class="card-img-top" 
+                             src="{{ blog_obj.image.url }}" 
+                             alt="{{ blog_obj.title }}">
+                    </div>
+                    
+                    <!-- Blog Title -->
+                    <h5 class="card-title mt-4 mb-3 text-center">{{ blog_obj.title }}</h5>
+
+                    <!-- Blog Content -->
+                    <div class="card-text blog-content">
+                        {{ blog_obj.content|safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-wrapper">
+            <a href="{% url 'home' %}" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

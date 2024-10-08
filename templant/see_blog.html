@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+ 
+  .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table thead {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.table th, .table td {
+    padding: 1rem;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table th {
+    font-weight: bold;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+    background-color: #e9ecef;
+    transition: background-color 0.3s ease;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+</style>
+</head>
+<body>
+<section class="mt-5 pt-5">
+  <div class="container">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Sr.No.</th>
+              <th scope="col">Blog Title</th>
+              <th scope="col">Created at</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for blog in blog_obj %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ blog.title }}</td>
+              <td>{{ blog.created_at }}</td>
+              <td>
+                <a href="{% url 'blog_update' blog.slug %}" class="btn btn-success">Update</a>
+                <a href="{% url 'blog_delete' blog.id %}" class="btn btn-danger">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+  </div>
+</section>
+{% endblock %}
