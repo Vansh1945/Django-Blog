@@ -1,5 +1,9 @@
 ﻿# Django-Blog
 # Django-Blog
+
+Run project CMD :- python manage.py runserver
+
+
 Features:
 
 **1. User Authentication:**
