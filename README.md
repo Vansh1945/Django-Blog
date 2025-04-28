@@ -1,7 +1,7 @@
 ﻿# Django-Blog
 # Django-Blog
 
-Run project CMD :- python manage.py runserver
+**Run project CMD** :- **python manage.py runserver**
 
 
 Features:
