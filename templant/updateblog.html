@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<<<<<<< HEAD
 
 <div class="container mt-5">
     <a href="{% url 'see_blog' %}" class="btn btn-warning">View Your Blogs</a>
@@ -28,4 +29,228 @@
     
 </div>
 
+=======
+<style>
+    :root {
+        --primary: #7c3aed;
+        --primary-light: #8b5cf6;
+        --primary-dark: #6d28d9;
+        --secondary: #ec4899;
+        --dark: #1e293b;
+        --light: #f8fafc;
+        --gray: #64748b;
+        --light-gray: #e2e8f0;
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+        --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+        background-color: var(--light);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .form-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        background: white;
+        border-radius: 16px;
+        box-shadow: var(--shadow-md);
+        padding: 2.5rem;
+    }
+
+    .form-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .form-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin: 0;
+    }
+
+    .btn-back {
+        background: var(--light-gray);
+        color: var(--dark);
+        border: none;
+        border-radius: 8px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .btn-back:hover {
+        background: #e2e6ea;
+        transform: translateY(-2px);
+    }
+
+    .btn-back i {
+        margin-right: 8px;
+    }
+
+    .form-group {
+        margin-bottom: 1.75rem;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 0.75rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid var(--light-gray);
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: var(--transition);
+    }
+
+    .form-control:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        outline: none;
+    }
+
+    .file-upload {
+        position: relative;
+        margin-bottom: 2rem;
+    }
+
+    .file-upload-label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        border: 2px dashed var(--light-gray);
+        border-radius: 8px;
+        background-color: #f9fafb;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .file-upload-label:hover {
+        border-color: var(--primary);
+        background-color: rgba(124, 58, 237, 0.05);
+    }
+
+    .file-upload-icon {
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
+
+    .file-upload-text {
+        color: var(--gray);
+        text-align: center;
+    }
+
+    .preview-image {
+        max-width: 100%;
+        border-radius: 8px;
+        margin-top: 1rem;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--light-gray);
+    }
+
+    .btn-submit {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        border: none;
+        border-radius: 8px;
+        padding: 1rem 2rem;
+        font-weight: 600;
+        color: white;
+        width: 100%;
+        transition: var(--transition);
+        margin-top: 1.5rem;
+    }
+
+    .btn-submit:hover {
+        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .current-image-label {
+        color: var(--gray);
+        font-size: 0.9rem;
+        margin-top: 1rem;
+        display: block;
+    }
+
+    .django-ckeditor-widget {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+</style>
+
+<div class="form-container">
+    <div class="form-header">
+        <h1 class="form-title">Update Blog Post</h1>
+        <a href="{% url 'see_blog' %}" class="btn btn-back">
+            <i class="fas fa-arrow-left"></i> Back to Blogs
+        </a>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="title" class="form-label">Blog Title</label>
+            <input type="text" id="title" name="title" class="form-control" value="{{ blog_obj.title }}" required>
+        </div>
+
+        <div class="form-group">
+            {{ form.media }}
+            {{ form.as_p }}
+        </div>
+
+        <div class="form-group">
+            <div class="file-upload">
+                <input type="file" id="blog-image" name="image" class="d-none">
+                <label for="blog-image" class="file-upload-label">
+                    <i class="fas fa-cloud-upload-alt file-upload-icon"></i>
+                    <span class="file-upload-text">Click to upload featured image</span>
+                </label>
+            </div>
+            
+            {% if blog_obj.image %}
+                <span class="current-image-label">Current Featured Image:</span>
+                <img src="{{ blog_obj.image.url }}" alt="{{ blog_obj.title }}" class="preview-image">
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-submit">
+            <i class="fas fa-save"></i> Update Blog
+        </button>
+    </form>
+</div>
+
+<script>
+    // Enhanced file upload functionality
+    const fileInput = document.getElementById('blog-image');
+    const fileUploadLabel = document.querySelector('.file-upload-label');
+    
+    fileInput.addEventListener('change', function(e) {
+        if (this.files && this.files[0]) {
+            const fileName = this.files[0].name;
+            fileUploadLabel.innerHTML = `
+                <i class="fas fa-file-image file-upload-icon"></i>
+                <span class="file-upload-text">${fileName}</span>
+                <span class="file-upload-text" style="font-size:0.8rem">Click to change</span>
+            `;
+        }
+    });
+</script>
+>>>>>>> 313bc30 (Initial commit of Django blog project)
 {% endblock %}

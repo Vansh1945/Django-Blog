@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<<<<<<< HEAD
 
 <div class="container mt-5">
     <a href="{% url "see_blog" %}" class="btn btn-warning">View Your Blogs</a>
@@ -26,3 +27,301 @@
 </div>
 
 {% endblock  %}
+=======
+<style>
+    :root {
+        --primary: #6C63FF;
+        --primary-light: #8E85FF;
+        --secondary: #FF6584;
+        --dark: #2D3748;
+        --light: #F7FAFC;
+        --gray: #A0AEC0;
+        --light-gray: #EDF2F7;
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+        --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+        --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .form-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+    }
+
+    .form-header {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        padding: 2rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .form-header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+        transform: rotate(30deg);
+    }
+
+    .form-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        position: relative;
+    }
+
+    .form-subtitle {
+        font-weight: 400;
+        opacity: 0.9;
+    }
+
+    .form-body {
+        padding: 2.5rem;
+    }
+
+    .btn-view-blogs {
+        background: white;
+        color: var(--primary);
+        border: none;
+        border-radius: 50px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+    }
+
+    .btn-view-blogs:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .btn-view-blogs i {
+        margin-right: 8px;
+    }
+
+    .form-group {
+        margin-bottom: 1.75rem;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid var(--light-gray);
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: var(--transition);
+        background-color: var(--light);
+    }
+
+    .form-control:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.1);
+        background-color: white;
+        outline: none;
+    }
+
+    .file-upload {
+        position: relative;
+        margin-bottom: 2rem;
+    }
+
+    .file-upload-label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 2rem;
+        border: 2px dashed var(--light-gray);
+        border-radius: 10px;
+        background-color: var(--light);
+        color: var(--gray);
+        text-align: center;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .file-upload-label:hover {
+        border-color: var(--primary);
+        background-color: rgba(108, 99, 255, 0.05);
+    }
+
+    .file-upload-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary);
+    }
+
+    .file-upload-text {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+
+    .file-upload-hint {
+        font-size: 0.85rem;
+        color: var(--gray);
+    }
+
+    .btn-submit {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        border: none;
+        border-radius: 50px;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: white;
+        width: 100%;
+        transition: var(--transition);
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+    }
+
+    .btn-submit i {
+        margin-right: 10px;
+    }
+
+    .django-ckeditor-widget {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+    }
+
+    @media (max-width: 768px) {
+        .form-container {
+            margin: 1rem;
+            border-radius: 12px;
+        }
+        
+        .form-header {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .btn-view-blogs {
+            position: static;
+            margin-top: 1rem;
+            display: inline-flex;
+        }
+        
+        .form-body {
+            padding: 1.5rem;
+        }
+    }
+</style>
+
+<div class="form-container">
+    <div class="form-header">
+        <h1 class="form-title">Create New Blog Post</h1>
+        <p class="form-subtitle">Share your thoughts with the world</p>
+        <a href="{% url 'see_blog' %}" class="btn-view-blogs">
+            <i class="fas fa-arrow-left"></i> Your Blogs
+        </a>
+    </div>
+    
+    <div class="form-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="title" class="form-label">Blog Title</label>
+                <input type="text" id="title" name="title" class="form-control" placeholder="Enter an attention-grabbing title" required>
+            </div>
+            
+            <div class="form-group">
+                {{ form.media }}
+                {{ form.as_p }}
+            </div>
+            
+            <div class="form-group file-upload">
+                <input type="file" id="blog-image" name="image" class="d-none" required>
+                <label for="blog-image" class="file-upload-label">
+                    <i class="fas fa-cloud-upload-alt file-upload-icon"></i>
+                    <span class="file-upload-text">Upload Featured Image</span>
+                    <span class="file-upload-hint">Drag & drop or click to browse (1200×630 recommended)</span>
+                </label>
+            </div>
+            
+            <button type="submit" class="btn-submit">
+                <i class="fas fa-paper-plane"></i> Publish Blog
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // File upload preview functionality
+    const fileInput = document.getElementById('blog-image');
+    const fileUploadLabel = document.querySelector('.file-upload-label');
+    
+    fileInput.addEventListener('change', function(e) {
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                fileUploadLabel.innerHTML = `
+                    <img src="${e.target.result}" style="max-height: 150px; border-radius: 8px; margin-bottom: 1rem;">
+                    <span class="file-upload-text">${fileInput.files[0].name}</span>
+                    <span class="file-upload-hint">Click to change image</span>
+                `;
+            }
+            
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+    
+    // Add drag and drop functionality
+    fileUploadLabel.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        fileUploadLabel.style.borderColor = 'var(--primary)';
+        fileUploadLabel.style.backgroundColor = 'rgba(108, 99, 255, 0.1)';
+    });
+    
+    fileUploadLabel.addEventListener('dragleave', () => {
+        fileUploadLabel.style.borderColor = 'var(--light-gray)';
+        fileUploadLabel.style.backgroundColor = 'var(--light)';
+    });
+    
+    fileUploadLabel.addEventListener('drop', (e) => {
+        e.preventDefault();
+        fileUploadLabel.style.borderColor = 'var(--light-gray)';
+        fileUploadLabel.style.backgroundColor = 'var(--light)';
+        
+        if (e.dataTransfer.files.length) {
+            fileInput.files = e.dataTransfer.files;
+            const event = new Event('change');
+            fileInput.dispatchEvent(event);
+        }
+    });
+</script>
+
+{% endblock %}
+>>>>>>> 313bc30 (Initial commit of Django blog project)

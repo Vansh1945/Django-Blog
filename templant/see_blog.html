@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<<<<<<< HEAD
 
 <style>
  
@@ -94,4 +95,320 @@
       </table>
   </div>
 </section>
+=======
+<style>
+    :root {
+        --primary: #7c3aed;
+        --primary-light: #8b5cf6;
+        --secondary: #ec4899;
+        --dark: #1e293b;
+        --light: #f8fafc;
+        --gray: #64748b;
+        --light-gray: #e2e8f0;
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+        --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+        background-color: var(--light);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .dashboard-container {
+        max-width: 1400px;
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .dashboard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .dashboard-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--dark);
+        display: flex;
+        align-items: center;
+    }
+
+    .dashboard-title i {
+        margin-right: 1rem;
+        color: var(--primary);
+        background: rgba(124, 58, 237, 0.1);
+        padding: 0.8rem;
+        border-radius: 12px;
+    }
+
+    .add-blog-btn {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        border: none;
+        border-radius: 10px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        color: white;
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .add-blog-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .add-blog-btn i {
+        margin-right: 0.5rem;
+    }
+
+    .table-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: var(--shadow-md);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .table-header {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        color: white;
+        padding: 1.5rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .table-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .table-search {
+        background: rgba(255,255,255,0.2);
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        color: white;
+        width: 250px;
+    }
+
+    .table-search::placeholder {
+        color: rgba(255,255,255,0.7);
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    .table thead th {
+        background: #f1f5f9;
+        color: var(--gray);
+        font-weight: 600;
+        padding: 1rem 1.5rem;
+        text-align: left;
+        border-bottom: 2px solid var(--light-gray);
+    }
+
+    .table tbody tr {
+        transition: var(--transition);
+    }
+
+    .table tbody tr:not(:last-child) {
+        border-bottom: 1px solid var(--light-gray);
+    }
+
+    .table tbody tr:hover {
+        background-color: rgba(124, 58, 237, 0.03);
+    }
+
+    .table td {
+        padding: 1.25rem 1.5rem;
+        color: var(--dark);
+        vertical-align: middle;
+    }
+
+    .blog-title {
+        font-weight: 600;
+        color: var(--dark);
+        transition: var(--transition);
+    }
+
+    .blog-title:hover {
+        color: var(--primary);
+    }
+
+    .blog-date {
+        color: var(--gray);
+        font-size: 0.9rem;
+    }
+
+    .action-btns {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    .btn-edit {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .btn-edit:hover {
+        background: #10b981;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+    }
+
+    .btn-delete {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .btn-delete:hover {
+        background: #ef4444;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2);
+    }
+
+    .empty-state {
+        padding: 3rem;
+        text-align: center;
+        color: var(--gray);
+    }
+
+    .empty-icon {
+        font-size: 3rem;
+        color: var(--light-gray);
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .table-header {
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        
+        .table-search {
+            width: 100%;
+        }
+        
+        .action-btns {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+</style>
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1 class="dashboard-title">
+            <i class="fas fa-pen-fancy"></i>
+            Blog Management
+        </h1>
+        <a href="{% url 'add_blog' %}" class="add-blog-btn">
+            <i class="fas fa-plus"></i> New Blog
+        </a>
+    </div>
+    
+    <div class="table-card">
+        <div class="table-header">
+            <h2 class="table-title">Your Blog Posts</h2>
+            <input type="text" class="table-search" placeholder="Search blogs...">
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for blog in blog_obj %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a href="#" class="blog-title">{{ blog.title }}</a>
+                        </td>
+                        <td class="blog-date">{{ blog.created_at }}</td>
+                        <td>
+                            <div class="action-btns">
+                                <a href="{% url 'blog_update' blog.slug %}" class="btn-edit">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a href="{% url 'blog_delete' blog.id %}" class="btn-delete">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">
+                            <div class="empty-state">
+                                <div class="empty-icon">
+                                    <i class="far fa-file-alt"></i>
+                                </div>
+                                <h3>No Blog Posts Yet</h3>
+                                <p>Get started by creating your first blog post</p>
+                                <a href="{% url 'add_blog' %}" class="add-blog-btn" style="margin-top: 1rem;">
+                                    <i class="fas fa-plus"></i> Create Blog
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Simple search functionality
+    document.querySelector('.table-search').addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const rows = document.querySelectorAll('tbody tr');
+        
+        rows.forEach(row => {
+            const title = row.querySelector('.blog-title').textContent.toLowerCase();
+            row.style.display = title.includes(searchTerm) ? '' : 'none';
+        });
+    });
+</script>
+
+>>>>>>> 313bc30 (Initial commit of Django blog project)
 {% endblock %}
