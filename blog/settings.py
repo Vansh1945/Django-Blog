@@ -7,8 +7,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-s+)putzjbps^-yh4t1&b9rd5taojerm^!ch)_oh^t6j*gs9(xe'
 DEBUG = True 
 
-ALLOWED_HOSTS = ['.vercel.app']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
 
 INSTALLED_APPS = [
    'whitenoise.runserver_nostatic',
@@ -24,7 +24,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-      'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',\
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -54,8 +54,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'blog.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL', 'sqlite:///db.sqlite3'))
+    'default': dj_database_url.config(default='sqlite:///db.sqlite3', conn_max_age=600)
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -78,6 +79,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
