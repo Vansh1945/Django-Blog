@@ -1,181 +1,109 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<style>
-    :root {
-        --primary-color: #4361ee;
-        --primary-hover: #3a56d4;
-        --text-color: #2b2d42;
-        --light-gray: #f8f9fa;
-        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    }
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Back to Home Link -->
+    <div class="mb-8">
+        <a href="{% url 'home' %}" class="inline-flex items-center gap-2 text-slate-500 hover:text-brand-600 font-semibold transition-colors duration-200 group">
+            <i class="fas fa-arrow-left text-sm group-hover:-translate-x-1 transition-transform"></i>
+            Back to Home
+        </a>
+    </div>
 
-    body {
-        background-color: #f5f7ff;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        color: var(--text-color);
-        line-height: 1.6;
-    }
-
-    .container {
-        max-width: 1200px;
-        padding: 2rem 1rem;
-    }
-
-    .blog-card {
-        border: none;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        background: white;
-        margin-bottom: 3rem;
-    }
-
-    .blog-card:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-hover);
-    }
-
-    .card-header {
-        background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
-        color: white;
-        font-size: 1.8rem;
-        font-weight: 700;
-        padding: 1.5rem 2rem;
-        text-align: center;
-        border-bottom: none;
-    }
-
-    .card-body {
-        padding: 3rem;
-    }
-
-    .blog-image-container {
-        margin: 0 auto;
-        max-width: 900px;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        margin-bottom: 2.5rem;
-    }
-
-    .blog-image {
-        width: 100%;
-        height: 500px;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.5s ease;
-    }
-
-    .blog-image:hover {
-        transform: scale(1.02);
-    }
-
-    .blog-title {
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: var(--text-color);
-        margin-bottom: 1.5rem;
-        text-align: center;
-        line-height: 1.3;
-    }
-
-    .blog-content {
-        font-size: 1.1rem;
-        line-height: 1.9;
-        color: #4a5568;
-    }
-
-    .blog-content p {
-        margin-bottom: 1.5rem;
-    }
-
-    .blog-content img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        margin: 1.5rem auto;
-        display: block;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn-back {
-        background: var(--primary-color);
-        border: none;
-        border-radius: 50px;
-        padding: 1rem 2rem;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: white;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        box-shadow: var(--shadow);
-    }
-
-    .btn-back:hover {
-        background: var(--primary-hover);
-        transform: translateY(-3px);
-        box-shadow: var(--shadow-hover);
-        color: white;
-    }
-
-    .btn-back i {
-        margin-right: 10px;
-        transition: transform 0.3s ease;
-    }
-
-    .btn-back:hover i {
-        transform: translateX(-5px);
-    }
-
-    .button-container {
-        text-align: center;
-        margin: 3rem 0;
-    }
-
-    @media (max-width: 768px) {
-        .card-body {
-            padding: 2rem 1.5rem;
-        }
-        
-        .blog-title {
-            font-size: 2rem;
-        }
-        
-        .blog-image {
-            height: 300px;
-        }
-    }
-</style>
-
-<div class="container">
-    <div class="blog-card">
-        <div class="card-header">
-            Blog Detail
+    <!-- Article Header Card -->
+    <article class="bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-100/50 overflow-hidden">
+        <!-- Featured Image with Fallback -->
+        <div class="relative w-full aspect-[21/9] bg-slate-100 overflow-hidden">
+            <img class="w-full h-full object-cover" 
+                 src="{{ blog_obj.image.url }}" 
+                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&auto=format&fit=crop&q=80';"
+                 alt="{{ blog_obj.title }}">
         </div>
-        <div class="card-body">
-            <div class="blog-image-container">
-                <img class="blog-image" 
-                     src="{{ blog_obj.image.url }}" 
-                     alt="{{ blog_obj.title }}">
+
+        <div class="p-6 sm:p-10 lg:p-12">
+            <!-- Category Tag -->
+            <div class="mb-4">
+                <span class="inline-flex items-center gap-1.5 bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full">
+                    <i class="fas fa-feather-alt text-[10px]"></i> Publication
+                </span>
             </div>
-            
-            <h1 class="blog-title">{{ blog_obj.title }}</h1>
-            
-            <div class="blog-content">
+
+            <!-- Title -->
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+                {{ blog_obj.title }}
+            </h1>
+
+            <!-- Meta details -->
+            <div class="flex flex-wrap items-center gap-4 pb-8 mb-8 border-b border-slate-100 text-sm">
+                <!-- Author Info -->
+                <div class="flex items-center gap-2.5">
+                    <div class="flex items-center justify-center w-8 h-8 rounded-full bg-brand-600 text-white font-bold text-xs shadow-sm">
+                        {{ blog_obj.user.username|slice:":1"|upper }}
+                    </div>
+                    <div>
+                        <p class="font-semibold text-slate-900 leading-tight">By {{ blog_obj.user.username }}</p>
+                    </div>
+                </div>
+                
+                <span class="text-slate-300 hidden sm:inline">|</span>
+
+                <!-- Date Info -->
+                <div class="flex items-center gap-1.5 text-slate-500">
+                    <i class="far fa-calendar"></i>
+                    <span>Published on {{ blog_obj.created_at|date:"F d, Y \a\t g:i a" }}</span>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="rich-text-content text-slate-700 text-base sm:text-lg leading-relaxed space-y-6">
                 {{ blog_obj.content|safe }}
             </div>
         </div>
-    </div>
-    
-    <div class="button-container">
-        <a href="{% url 'home' %}" class="btn btn-back">
-            <i class="fas fa-arrow-left"></i> Back to Home
-        </a>
-    </div>
+    </article>
 </div>
 
+<!-- Inline styling for Rich Text rendered output -->
+<style>
+    .rich-text-content p {
+        margin-bottom: 1.5rem;
+    }
+    .rich-text-content h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        letter-spacing: -0.025em;
+    }
+    .rich-text-content h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #0f172a;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+    .rich-text-content ul, .rich-text-content ol {
+        margin-left: 1.5rem;
+        margin-bottom: 1.5rem;
+        list-style-position: outside;
+    }
+    .rich-text-content ul {
+        list-style-type: disc;
+    }
+    .rich-text-content ol {
+        list-style-type: decimal;
+    }
+    .rich-text-content li {
+        margin-bottom: 0.5rem;
+    }
+    .rich-text-content blockquote {
+        border-left: 4px solid #7c3aed;
+        background-color: #f5f3ff;
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+        color: #4c1d95;
+    }
+</style>
 {% endblock %}

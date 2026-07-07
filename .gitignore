@@ -17,3 +17,6 @@ media/
 # Environment
 venv/
 env/
+
+# Node.js
+node_modules/
